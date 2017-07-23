@@ -1,4 +1,4 @@
-const { Stack } = require('./stack');
+const { Stack, MinStack } = require('./stack');
 
 describe('Stack', () => {
 
@@ -58,5 +58,41 @@ describe('Stack', () => {
       expect(stack.count()).toBe(1);
     });
 
+    it('should return undefined when stack is empty', () => {
+      const stack = new Stack();
+      expect(stack.peek()).toBeUndefined();
+    });
+
   });
+});
+
+describe('MinStack', () => {
+
+  describe('pop', () => {
+
+    it('return the most recent added element', () => {
+      const minStack = new MinStack();
+      minStack.push(4);
+      minStack.push(3);
+      expect(minStack.pop()).toBe(3);
+    });
+
+  });
+
+  describe('min', () => {
+
+    it('return the minimum element in the stack', () => {
+      const minStack = new MinStack();
+      minStack.push(4);
+      minStack.push(3);
+      minStack.push(5);
+      minStack.push(2);
+      minStack.push(6);
+      minStack.pop();
+      minStack.pop();
+      expect(minStack.min()).toBe(3);
+    });
+
+  });
+
 });
