@@ -3,6 +3,8 @@ module.exports = function () {
     files: [
       '**/*.js',
       '!**/*.spec.js',
+      '!node_modules/**',
+      '!wallaby.js',
     ],
     tests: [
       '**/*.spec.js',
@@ -11,6 +13,6 @@ module.exports = function () {
       type: 'node',
       runner: 'node',
     },
-    testFramework: 'jasmine'
+    testFramework: 'jasmine',
   };
 };
