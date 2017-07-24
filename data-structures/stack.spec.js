@@ -66,21 +66,47 @@ describe('Stack', () => {
   });
 
   describe('contains()', () => {
+    let stack;
 
-    it('should return true when the stack contains the value', () => {
-      const stack = new Stack();
+    beforeEach(() => {
+      stack = new Stack();
       stack.push('a');
       stack.push('b');
       stack.push('c');
+    });
+
+    it('should return true when the stack contains the value', () => {
       expect(stack.contains('c')).toBe(true);
     });
 
     it('should return false when the stack does not contain the value', () => {
-      const stack = new Stack();
-      stack.push('a');
-      stack.push('b');
-      stack.push('c');
       expect(stack.contains('d')).toBe(false);
+    });
+
+  });
+
+  describe('until()', () => {
+    let stack;
+
+    beforeEach(() => {
+      stack = new Stack();
+      stack.push(3);
+      stack.push(2);
+      stack.push(4);
+      stack.push(1);
+      stack.push(5);
+    });
+
+    it('should return 1 when the parameter is the last element in the stack', () => {
+      expect(stack.until(5)).toBe(1);
+    });
+
+    it('should return correct number of pops', () => {
+      expect(stack.until(4)).toBe(3);
+    });
+
+    it('should return count when the stack does not contain the parameter', () => {
+      expect(stack.until(6)).toBe(5);
     });
 
   });

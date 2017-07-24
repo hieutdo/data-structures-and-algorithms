@@ -100,6 +100,19 @@ Stack.prototype.contains = function (value) {
   }
   return false;
 };
+// Time complexity: O(n)
+
+Stack.prototype.until = function (value) {
+  let numOfPops = 0;
+  for (let i = this._count - 1; i >= 0; i--) {
+    numOfPops++;
+    if (this._storage[i] === value) {
+      break;
+    }
+  }
+  return numOfPops;
+};
+// Time complexity: O(n)
 
 module.exports = Stack;
 
