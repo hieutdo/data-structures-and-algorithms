@@ -60,7 +60,7 @@ function Stack(capacity) {
 Stack.prototype.push = function (value) {
   // implement me...
   if (this._count === this._capacity) {
-    throw 'capacity reached.';
+    throw 'Max capacity already reached. Remove element before adding a new one.';
   }
   this._storage[this._count] = value;
   this._count++;
@@ -92,6 +92,17 @@ Stack.prototype.count = function () {
 };
 // Time complexity: O(1)
 
+Stack.prototype.contains = function (value) {
+  for (let i = 0; i < this._count; i++) {
+    if (this._storage[i] === value) {
+      return true;
+    }
+  }
+  return false;
+};
+
+module.exports = Stack;
+
 /*
 *** Exercises:
 
@@ -110,33 +121,3 @@ You are given three towers (stacks) and N disks, each of different size. You can
    3. no disk can be placed on top of a disk that is smaller than it
 The disks begin on tower#1. Write a function that will move the disks from tower#1 to tower#3 in such a way that none of the constraints are violated.
  */
-
-function MinStack(capacity) {
-  Stack.call(this, capacity);
-  this._min = new Stack();
-}
-
-MinStack.prototype = Object.create(Stack.prototype);
-
-MinStack.prototype.push = function (value) {
-  const count = Stack.prototype.push.call(this, value);
-  if (this._min.peek() < value) {
-    this._min.push(this._min.peek());
-  } else {
-    this._min.push(value);
-  }
-  return count;
-};
-
-MinStack.prototype.pop = function () {
-  const value = Stack.prototype.pop.call(this);
-  this._min.pop();
-  return value;
-};
-
-MinStack.prototype.min = function () {
-  return this._min.peek();
-};
-
-exports.Stack = Stack;
-exports.MinStack = MinStack;

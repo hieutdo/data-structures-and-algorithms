@@ -1,4 +1,4 @@
-const { Stack, MinStack } = require('./stack');
+const Stack = require('./stack');
 
 describe('Stack', () => {
 
@@ -8,7 +8,7 @@ describe('Stack', () => {
       const stack = new Stack(2);
       stack.push('a');
       stack.push('b');
-      expect(stack.push.bind(stack, 3)).toThrow('capacity reached.');
+      expect(stack.push.bind(stack, 3)).toThrow();
     });
 
     it('should return count', () => {
@@ -64,33 +64,23 @@ describe('Stack', () => {
     });
 
   });
-});
 
-describe('MinStack', () => {
+  describe('contains()', () => {
 
-  describe('pop', () => {
-
-    it('return the most recent added element', () => {
-      const minStack = new MinStack();
-      minStack.push(4);
-      minStack.push(3);
-      expect(minStack.pop()).toBe(3);
+    it('should return true when the stack contains the value', () => {
+      const stack = new Stack();
+      stack.push('a');
+      stack.push('b');
+      stack.push('c');
+      expect(stack.contains('c')).toBe(true);
     });
 
-  });
-
-  describe('min', () => {
-
-    it('return the minimum element in the stack', () => {
-      const minStack = new MinStack();
-      minStack.push(4);
-      minStack.push(3);
-      minStack.push(5);
-      minStack.push(2);
-      minStack.push(6);
-      minStack.pop();
-      minStack.pop();
-      expect(minStack.min()).toBe(3);
+    it('should return false when the stack does not contain the value', () => {
+      const stack = new Stack();
+      stack.push('a');
+      stack.push('b');
+      stack.push('c');
+      expect(stack.contains('d')).toBe(false);
     });
 
   });
