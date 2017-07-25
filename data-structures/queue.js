@@ -51,29 +51,63 @@ What's the time complexity?
  */
 
 function Queue(capacity) {
-  // implement me...
+  this._capacity = capacity || Infinity;
+  this._storage = {};
+  this._headIndex = 0;
+  this._tailIndex = 0;
 }
 
-Queue.prototype.enqueue = function(value) {
-  // implement me...
+Queue.prototype.enqueue = function (value) {
+  if (this.count() === this._capacity) {
+    return 'Max capacity already reached. Remove element before adding a new one.';
+  }
+  this._storage[this._tailIndex++] = value;
+  return this.count();
 };
-// Time complexity:
+// Time complexity: O(1)
 
-Queue.prototype.dequeue = function() {
-  // implement me...
+Queue.prototype.dequeue = function () {
+  if (this.count() === 0) {
+    return 'queue is empty';
+  }
+  const value = this._storage[this._headIndex];
+  delete this._storage[this._headIndex++];
+  return value;
 };
-// Time complexity:
+// Time complexity: O(1)
 
-Queue.prototype.peek = function() {
-  // implement me...
+Queue.prototype.peek = function () {
+  return this._storage[this._headIndex];
+};
+// Time complexity: O(1)
+
+Queue.prototype.count = function () {
+  return this._tailIndex - this._headIndex;
+};
+// Time complexity: O(1)
+
+Queue.prototype.contains = function (value) {
+  for (let i = this._headIndex; i < this._tailIndex; i++) {
+    if (this._storage[i] === value) {
+      return true;
+    }
+  }
+  return false;
+};
+// Time complexity: O(n)
+
+Queue.prototype.until = function (value) {
+  let numOfDequeues = 0;
+  for (let i = this._headIndex; i < this._tailIndex; i++) {
+    numOfDequeues++;
+    if (this._storage[i] === value) {
+      break;
+    }
+  }
+  return numOfDequeues;
 };
 
-Queue.prototype.count = function() {
-  // implement me...
-};
-// Time complexity:
-
-
+module.exports = Queue;
 
 /*
 *** Exercises:
