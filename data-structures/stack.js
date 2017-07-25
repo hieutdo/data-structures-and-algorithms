@@ -71,7 +71,7 @@ Stack.prototype.push = function (value) {
 Stack.prototype.pop = function () {
   // implement me...
   if (this._count === 0) {
-    throw 'stack is empty';
+    return 'stack is empty';
   }
   const item = this.peek();
   delete this._storage[this._count - 1];

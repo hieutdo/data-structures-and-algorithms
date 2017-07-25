@@ -23,7 +23,7 @@ describe('Stack', () => {
 
     it('should throw error when stack is empty', () => {
       const stack = new Stack();
-      expect(stack.pop.bind(stack)).toThrow('stack is empty');
+      expect(stack.pop(stack)).toBe('stack is empty');
     });
 
     it('should return the most recent added element', () => {
