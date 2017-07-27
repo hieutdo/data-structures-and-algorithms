@@ -6,14 +6,14 @@ flatten([1,[2],[3, [[4]]]]);
 */
 
 function flatten(arr) {
-  let flattenArr = [];
+  const flattenArr = [];
 
   function _flatten(a) {
     for (let i of a) {
-      if (typeof i === 'number') {
-        flattenArr.push(i);
-      } else {
+      if (Array.isArray(i)) {
         _flatten(i);
+      } else {
+        flattenArr.push(i);
       }
     }
   }
@@ -22,3 +22,5 @@ function flatten(arr) {
 
   return flattenArr;
 }
+
+flatten([1,[null],[undefined, [{foo: 'bar'}, ['string', [false, [true]]]]]]);
