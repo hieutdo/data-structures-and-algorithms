@@ -15,7 +15,7 @@ find(7) -> false
 /**
  * Initialize your data structure here.
  */
-var TwoSum = function() {
+var TwoSum = function () {
   this.map = new Map();
 };
 
@@ -24,7 +24,7 @@ var TwoSum = function() {
  * @param {number} number
  * @return {void}
  */
-TwoSum.prototype.add = function(number) {
+TwoSum.prototype.add = function (number) {
   this.map.set(number, (this.map.get(number) || 0) + 1);
 };
 
@@ -33,14 +33,10 @@ TwoSum.prototype.add = function(number) {
  * @param {number} value
  * @return {boolean}
  */
-TwoSum.prototype.find = function(value) {
-  for (const [num, count] of this.map.entries()) {
+TwoSum.prototype.find = function (value) {
+  for (const num of this.map.keys()) {
     const complement = value - num;
-    if (complement === num) {
-      if (count >= 2) {
-        return true;
-      }
-    } else if (this.map.has(complement)) {
+    if (this.map.has(complement) && (num !== complement || this.map.get(num) > 1)) {
       return true;
     }
   }

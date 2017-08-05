@@ -33,9 +33,9 @@ describe('Two Sum III - Data structure design', () => {
     });
 
     it('returns false when no sum pair found', () => {
-      twoSum.add(1);
+      twoSum.add(2);
       twoSum.add(3);
-      expect(twoSum.find(5)).toBe(false);
+      expect(twoSum.find(4)).toBe(false);
     });
 
     it('returns false when it contains zero number', () => {
