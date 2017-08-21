@@ -1,8 +1,25 @@
-const { ListNode, TreeNode, sortedListToBST } = require('./109-convert-sorted-list-to-binary-search-tree');
+const { ListNode, sortedListToBST } = require('./109-convert-sorted-list-to-binary-search-tree');
 
 describe('Convert sorted list to binary search tree', () => {
 
-  it('returns correct result', () => {
+  it('returns correct result when list has one node', () => {
+    const list = new ListNode(1);
+    const tree = sortedListToBST(list);
+    expect(tree.val).toBe(1);
+    expect(tree.left).toBeNull();
+    expect(tree.right).toBeNull();
+  });
+
+  it('returns correct result when list has two nodes', () => {
+    const list = new ListNode(1);
+    list.next = new ListNode(2);
+    const tree = sortedListToBST(list);
+    expect(tree.val).toBe(2);
+    expect(tree.left.val).toBe(1);
+    expect(tree.right).toBeNull();
+  });
+
+  it('returns correct result when list has more than 2 nodes', () => {
     const list = new ListNode(1);
     list.next = new ListNode(2);
     list.next.next = new ListNode(3);
