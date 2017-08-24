@@ -5,8 +5,12 @@ function buildTreeFromArray(arr) {
   const treeArr = [root];
   for (let i = 1; i < arr.length; i++) {
     const node = arr[i] === null ? null : new TreeNode(arr[i]);
-    let parentIndex = Math.floor((i - 1) / 2);
-    while (treeArr[parentIndex] === null) {
+    let nextParentIndex = Math.floor((i - 1) / 2);
+    let parentIndex = 0;
+    while (nextParentIndex > 0) {
+      if (treeArr[parentIndex + 1] !== null) {
+        nextParentIndex--;
+      }
       parentIndex++;
     }
     const parent = treeArr[parentIndex];
