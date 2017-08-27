@@ -24,9 +24,8 @@ const isPerfectSquare = function(num) {
   let high = num;
   while (low <= high) {
     const mid = Math.floor((high - low) / 2) + low;
-    const square = mid * mid;
-    if (square === num) return true;
-    if (square < num) {
+    if (mid === num / mid) return true;
+    if (mid < num / mid) {
       low = mid + 1;
     } else {
       high = mid - 1;
