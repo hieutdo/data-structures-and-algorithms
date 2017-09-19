@@ -43,14 +43,24 @@ function partition(arr, pivot, low, high) {
   return pivotIndex;
 }
 
-function quickSort(arr, low = 0, high = arr.length - 1) {
-  if (low < high) {
-    const pivot = arr[high];
-    const pivotIndex = partition(arr, pivot, low, high);
-    quickSort(arr, low, pivotIndex - 1);
-    quickSort(arr, pivotIndex + 1, high);
+function quickSort(arr) {
+  if (!arr || arr.length <= 1) {
+    return arr;
   }
-  return arr;
+  const pivot = arr.splice(Math.floor(arr.length / 2), 1);
+  const left = [];
+  const right = [];
+  arr.forEach(num => {
+    if (num < pivot) {
+      left.push(num);
+    } else {
+      right.push(num);
+    }
+  });
+  return []
+    .concat(quickSort(left))
+    .concat(pivot)
+    .concat(quickSort(right));
 }
 
 const arr = [3, 7, 8, 4, 2, 1, 5];
