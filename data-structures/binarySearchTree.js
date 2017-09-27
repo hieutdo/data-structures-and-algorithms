@@ -51,19 +51,52 @@ A binary search tree was created by iterating over an array and inserting each e
 
 */
 
-function BinarySearchTree (value) {
+function BinarySearchTree(value) {
   this.value = value;
   this.left = null;
   this.right = null;
 }
 
-BinarySearchTree.prototype.insert = function(value) {
-  // implement me...
+BinarySearchTree.prototype.insert = function insert(value) {
+  const root = this;
+  let node = root;
+
+  while (node !== null) {
+    if (value <= node.value) {
+      if (node.left === null) {
+        node.left = new BinarySearchTree(value);
+        break;
+      } else {
+        node = node.left;
+      }
+    } else if (node.right === null) {
+      node.right = new BinarySearchTree(value);
+      break;
+    } else {
+      node = node.right;
+    }
+  }
+
+  return root;
 };
 // Time complexity:
 
-BinarySearchTree.prototype.contains = function(value) {
-  // implement me...
+BinarySearchTree.prototype.contains = function contains(value) {
+  const root = this;
+  let node = root;
+
+  while (node !== null) {
+    if (value === node.value) {
+      return true;
+    }
+    if (value <= node.value) {
+      node = node.left;
+    } else {
+      node = node.right;
+    }
+  }
+
+  return false;
 };
 // Time complexity:
 
@@ -82,7 +115,6 @@ BinarySearchTree.prototype.traverseDepthFirst_postOrder = function(fn) {
 };
 // Time complexity:
 
-
 BinarySearchTree.prototype.checkIfFull = function() {
   // implement me...
 };
@@ -92,3 +124,14 @@ BinarySearchTree.prototype.checkIfBalanced = function() {
   // implement me...
 };
 // Time complexity:
+
+const bst = new BinarySearchTree(11);
+bst.insert(15);
+bst.insert(7);
+bst.insert(5);
+bst.insert(9);
+bst.insert(13);
+bst.insert(17);
+console.log(bst.contains(9));
+console.log(bst.contains(17));
+console.log(bst.contains(12));
