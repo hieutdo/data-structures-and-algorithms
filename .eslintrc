@@ -1,0 +1,7 @@
+{
+  "extends": "last",
+  "env": {
+    "node": true,
+    "jasmine": true
+  }
+}
