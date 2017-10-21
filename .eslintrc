@@ -3,5 +3,8 @@
   "env": {
     "node": true,
     "jasmine": true
+  },
+  "rules": {
+    "no-console": "off"
   }
 }
