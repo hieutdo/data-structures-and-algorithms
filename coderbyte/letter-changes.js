@@ -13,19 +13,12 @@ Output:"gvO Ujnft!"
  */
 function LetterChanges(str) {
   return str
-    .split('')
-    .map(l => {
-      if (/[^a-z]/i.test(l)) return l;
-      if (l.toLowerCase() === 'z') return 'a';
-      return String.fromCharCode(l.charCodeAt(0) + 1);
+    .replace(/[a-z]/gi, letter => {
+      if (letter === 'z') return 'a';
+      if (letter === 'Z') return 'A';
+      return String.fromCharCode(letter.charCodeAt(0) + 1);
     })
-    .map(l => {
-      if (l === 'a' || l === 'e' || l === 'i' || l === 'o' || l === 'u') {
-        return l.toUpperCase();
-      }
-      return l;
-    })
-    .join('');
+    .replace(/[aeiou]/gi, vowel => vowel.toUpperCase());
 }
 
 module.exports = LetterChanges;
